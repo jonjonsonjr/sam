@@ -39,7 +39,21 @@ const schedules = playlists.map(p => {
   return p;
 });
 
-console.log(print_xml(schedules));
+console.log(btoa(print_xml(schedules)));
+
+// Shamelessly stolen from https://stackoverflow.com/a/18197341/2793304
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+  element.style.display = 'none';
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+}
+
+download('backup.xml', print_xml(schedules));
+
 </script>
 </body>
 </html>
