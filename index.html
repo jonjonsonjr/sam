@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>::1</title>
+</head>
+<body>
+<script src="index.js"></script>
+<script>
+const playlists = [
+  {
+    name: 'Ambient Coffee Morning',
+    url: 'https://open.spotify.com/user/1155899437/playlist/6qaUi2aj8Wtwkrrmzvqdmd',
+    hour: 8,
+    minute: 30,
+  }, {
+    name: 'Classic Country',
+    url: 'https://open.spotify.com/user/carter.santos/playlist/5bXZLtnfqq2UbTEcZaHbqF',
+    hour: 10,
+    minute: 30,
+  }, {
+    name: 'Classic rock/pop 80\'s',
+    url: 'https://open.spotify.com/user/1281672208/playlist/7iovz3ZXq7xypgK5zkkprc',
+    hour: 13,
+    minute: 0,
+  }, {
+    name: 'Louis The Child - Radio',
+    url: 'https://open.spotify.com/user/1144330891/playlist/3TwtYYOux2ogFw7C970YcI',
+    hour: 16,
+    minute: 0,
+  },
+];
+
+const schedules = playlists.map(p => {
+  const matches = p.url.match('https://open.spotify.com/user/(.*)/playlist/(.*)');
+  const user_id = matches[1];
+  const playlist_id = matches[2];
+  p.playlist = `spotify:user:${user_id}:playlist:${playlist_id}:play`;
+  return p;
+});
+
+console.log(print_xml(schedules));
+</script>
+</body>
+</html>
